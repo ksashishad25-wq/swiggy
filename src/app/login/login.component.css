@@ -1,0 +1,22 @@
+:host { display: block; }
+.auth-page { align-items: center; background: #f7f7f7; display: flex; justify-content: center; min-height: calc(100vh - 80px); padding: 48px 16px; }
+.auth-card { background: #fff; border-radius: 4px; box-shadow: 0 8px 32px rgba(40, 44, 63, .12); max-width: 440px; padding: 32px; width: 100%; }
+.auth-brand-mark { align-items: center; background: #fc8019; border-radius: 12px; color: #fff; display: flex; font-size: 20px; font-weight: 800; height: 44px; justify-content: center; margin-bottom: 20px; width: 44px; }
+.auth-kicker { color: #fc8019; font-size: 11px; font-weight: 800; letter-spacing: .14em; margin: 0 0 8px; }
+h1 { color: #02060c; font-size: 28px; margin: 0 0 8px; }
+.auth-copy { color: #686b78; font-size: 14px; line-height: 1.5; margin: 0 0 24px; }
+.auth-tabs { border-bottom: 1px solid #d4d5d9; display: flex; margin-bottom: 20px; }
+.auth-tabs button { background: transparent; border: 0; border-bottom: 2px solid transparent; color: #686b78; cursor: pointer; flex: 1; font-weight: 700; padding: 12px; }
+.auth-tabs button.active { border-bottom-color: #fc8019; color: #fc8019; }
+.auth-form { display: grid; gap: 16px; }
+.auth-form label { display: grid; gap: 7px; }
+.auth-form label span { color: #414449; font-size: 13px; font-weight: 700; }
+.auth-form input { border: 1px solid #d4d5d9; border-radius: 4px; color: #02060c; padding: 16px; outline: 0; }
+.auth-form input:focus { border-color: #fc8019; }
+.auth-form small { color: #d93025; font-size: 12px; }
+.auth-submit { background: #fc8019; border: 0; color: #fff; cursor: pointer; font-weight: 700; height: 50px; text-transform: uppercase; }
+.auth-submit:disabled { background: #d4d5d9; cursor: not-allowed; }
+.auth-switch { color: #686b78; font-size: 13px; margin: 20px 0 0; text-align: center; }
+.auth-switch button { background: transparent; border: 0; color: #fc8019; cursor: pointer; font-weight: 700; padding: 0; }
+.auth-form label em { color: #686b78; font-size: 11px; font-style: normal; font-weight: 400; }
+.success-banner { background: #eaf8ec; border: 1px solid #25b02e; border-radius: 4px; color: #16721e; font-size: 13px; line-height: 1.5; margin-bottom: 16px; padding: 12px; }

@@ -1,0 +1,50 @@
+<div class="swiggy-shell">
+  <header class="swiggy-header">
+    <div class="container nav-wrap">
+      <a class="brand" [routerLink]="['/home']" aria-label="Swiggy home"><span class="brand-mark">S</span><span class="brand-name">Swiggy</span></a>
+
+      <div class="location-control">
+        <button class="location-trigger" type="button" (click)="toggleLocation()">
+          <span>Bengaluru, Karnataka</span><span class="chevron">⌄</span>
+        </button>
+        <div class="location-menu" *ngIf="locationOpen">
+          <strong>Choose a location</strong>
+          <button type="button" (click)="toggleLocation()">Bengaluru</button>
+          <button type="button" (click)="toggleLocation()">Indiranagar</button>
+        </div>
+      </div>
+
+      <nav class="nav-links" aria-label="Main navigation">
+        <a [routerLink]="['/restaurants']" routerLinkActive="active-nav">⌕ <span>Restaurants</span></a>
+        <a [routerLink]="['/offers']" routerLinkActive="active-nav" class="offers-link">◉ <span>Offers <sup>NEW</sup></span></a>
+        <a [routerLink]="['/deals']" routerLinkActive="active-nav">◆ <span>Deals</span></a>
+        <a [routerLink]="['/help']" routerLinkActive="active-nav">☻ <span>Help</span></a>
+        <span class="auth-actions">
+          <a [routerLink]="['/login']" routerLinkActive="active-nav" class="login-link">Log in</a>
+          <a [routerLink]="['/signup']" routerLinkActive="active-nav" class="signup-button">Sign up</a>
+        </span>
+        <button type="button" class="cart-link" (click)="toggleCart()">▣ <span>Cart</span><b class="cart-badge">{{ cartCount$ | async }}</b></button>
+      </nav>
+    </div>
+  </header>
+
+  <aside class="cart-drawer" [class.open]="cartOpen" aria-label="Shopping cart">
+    <div class="cart-drawer-header"><div><p class="eyebrow">BENGALURU DELIVERY</p><h2>Your cart</h2></div><button type="button" (click)="toggleCart()">×</button></div>
+    <div class="cart-empty" *ngIf="(cartItems$ | async)?.length === 0"><span>▣</span><strong>Your cart is empty</strong><p>Add dishes from your favourite restaurants.</p></div>
+    <div class="cart-items" *ngIf="(cartItems$ | async) as items"><article *ngFor="let item of items"><div><strong>{{ item.name }}</strong><small>{{ item.restaurant }}</small></div><div class="cart-item-actions"><span>₹{{ item.price * item.quantity }}</span><button type="button" (click)="removeItem(item)">−</button><b>{{ item.quantity }}</b></div></article></div>
+    <div class="cart-summary" *ngIf="(subtotal$ | async) as subtotal"><div><span>Subtotal</span><strong>₹{{ subtotal }}</strong></div><div><span>Delivery fee</span><strong>₹39</strong></div><div class="cart-total"><span>Total</span><strong>₹{{ subtotal + 39 }}</strong></div><button type="button" [disabled]="(cartCount$ | async) === 0">Checkout</button></div>
+  </aside>
+  <div class="cart-backdrop" *ngIf="cartOpen" (click)="toggleCart()"></div>
+
+  <router-outlet></router-outlet>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>
+        <strong>Swiggy</strong>
+        <span>Delivering happiness, one meal at a time.</span>
+      </div>
+      <span>Copyright 2026 Swiggy-inspired demo</span>
+    </div>
+  </footer>
+</div>

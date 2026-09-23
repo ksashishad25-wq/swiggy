@@ -1,0 +1,53 @@
+<main class="swiggy-home">
+  <section class="discover-section">
+    <div class="content-width">
+      <div class="section-title-row">
+        <h1>What's on your mind?</h1>
+        <div class="carousel-actions"><button type="button" aria-label="Previous categories" (click)="scrollLeft(categoryCarousel)">&lt;</button><button type="button" aria-label="Next categories" (click)="scrollRight(categoryCarousel)">&gt;</button></div>
+      </div>
+      <div class="category-scroller" #categoryCarousel>
+        <a class="food-category" *ngFor="let category of categories" [routerLink]="['/restaurants']" [queryParams]="{ category: category.name.toLowerCase() }" [class.selected]="selectedCategory === category.name" (click)="selectCategory(category.name)">
+          <img [src]="category.image" [alt]="category.name" (error)="onImgError($event)" />
+          <span>{{ category.name }}</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-width chain-section">
+    <div class="section-title-row">
+      <h2>Top restaurant chains in Bengaluru</h2>
+      <div class="carousel-actions"><button type="button" aria-label="Previous restaurants" (click)="scrollLeft(chainCarousel)">&lt;</button><button type="button" aria-label="Next restaurants" (click)="scrollRight(chainCarousel)">&gt;</button></div>
+    </div>
+    <div class="chain-grid" #chainCarousel>
+      <a class="chain-card" *ngFor="let restaurant of chains" [routerLink]="['/restaurants']">
+        <div class="chain-image"><img [src]="restaurant.image" [alt]="restaurant.name" (error)="onImgError($event)" /><span *ngIf="restaurant.offer">{{ restaurant.offer }}</span></div>
+        <h3>{{ restaurant.name }}</h3>
+        <p class="restaurant-rating"><b>★</b> {{ restaurant.rating }} · {{ restaurant.time }}</p>
+        <p>{{ restaurant.cuisine }}</p><p>{{ restaurant.area }}</p>
+      </a>
+    </div>
+    <div class="carousel-progress"><span></span></div>
+  </section>
+
+  <section class="content-width listing-section" id="search">
+    <div class="section-title-row listing-heading"><h2>Restaurants with online food delivery in Bengaluru</h2></div>
+    <div class="listing-tools">
+      <button type="button" class="sort-button" (click)="sortRestaurants()">Sort By <span>⌄</span></button>
+      <label class="listing-search"><span>⌕</span><input type="search" [(ngModel)]="searchTerm" placeholder="Search restaurants" /></label>
+      <button type="button" class="filter-button" (click)="selectedCategory = 'All'">All restaurants</button>
+    </div>
+    <div class="restaurant-list-grid">
+      <a class="listing-card" *ngFor="let restaurant of filteredRestaurants" [routerLink]="['/restaurants']">
+        <div class="listing-image"><img [src]="restaurant.image" [alt]="restaurant.name" (error)="onImgError($event)" /><button type="button" class="save-button" aria-label="Save restaurant" (click)="$event.preventDefault()">♡</button></div>
+        <div class="listing-card-content"><div class="listing-name"><h3>{{ restaurant.name }}</h3><span>★ {{ restaurant.rating }}</span></div><p>{{ restaurant.cuisine }}</p><p>{{ restaurant.area }} · {{ restaurant.time }}</p></div>
+      </a>
+    </div>
+    <p class="empty-state" *ngIf="filteredRestaurants.length === 0">No restaurants match your search.</p>
+
+    <div class="delivery-table-wrap">
+      <div class="table-heading"><div><p class="table-kicker">DELIVERY SNAPSHOT</p><h2>Plan your next order</h2></div><span>{{ filteredRestaurants.length }} restaurants available</span></div>
+      <div class="table-scroll"><table class="delivery-table"><thead><tr><th>Restaurant</th><th>Rating</th><th>Delivery time</th><th>Speciality</th><th>Area</th></tr></thead><tbody><tr *ngFor="let restaurant of filteredRestaurants"><td><strong>{{ restaurant.name }}</strong></td><td><span class="table-rating">★ {{ restaurant.rating }}</span></td><td>{{ restaurant.time }}</td><td>{{ restaurant.cuisine }}</td><td>{{ restaurant.area }}</td></tr></tbody></table></div>
+    </div>
+  </section>
+</main>

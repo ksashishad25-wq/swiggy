@@ -13,6 +13,10 @@ interface Restaurant {
   cuisine: string;
   area: string;
   offer?: string;
+  offerType?: 'orange' | 'purple' | 'gold';
+  isVeg?: boolean;
+  freeDelivery?: boolean;
+  cost?: number;
 }
 
 @Component({
@@ -28,30 +32,30 @@ export class HomeComponent {
   searchTerm = '';
   sortAscending = false;
   categories: FoodCategory[] = [
-    { name: 'Masala Dosa', image: 'https://images.unsplash.com/photo-1630383249896-424e482df921?auto=format&fit=crop&w=240&q=85' },
-    { name: 'Biryani', image: 'https://images.unsplash.com/photo-1563379091339-03246963d51a?auto=format&fit=crop&w=240&q=85' },
-    { name: 'Filter Coffee', image: 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=240&q=85' },
-    { name: 'Burgers', image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=240&q=85' },
-    { name: 'Kebabs', image: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=240&q=85' },
-    { name: 'Sourdough Pizza', image: 'https://images.unsplash.com/photo-1579751626657-72bc17010498?auto=format&fit=crop&w=240&q=85' },
-    { name: 'Cakes', image: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=240&q=85' },
-    { name: 'South Indian Thali', image: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=240&q=85' },
-    { name: 'Chaat', image: 'https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=240&q=85' },
-    { name: 'Waffles', image: 'https://images.unsplash.com/photo-1562376552-0d160a2f238d?auto=format&fit=crop&w=240&q=85' },
+    { name: 'Masala Dosa', image: 'https://images.unsplash.com/photo-1668236543090-82eba5ee5976?w=800&auto=format&fit=crop' },
+    { name: 'Biryani', image: 'https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=800&auto=format&fit=crop' },
+    { name: 'Filter Coffee', image: 'https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=800&auto=format&fit=crop' },
+    { name: 'Burgers', image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=800&auto=format&fit=crop' },
+    { name: 'Kebabs', image: 'https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?w=800&auto=format&fit=crop' },
+    { name: 'Sourdough Pizza', image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=800&auto=format&fit=crop' },
+    { name: 'Cakes', image: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=800&auto=format&fit=crop' },
+    { name: 'South Indian Thali', image: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?w=800&auto=format&fit=crop' },
+    { name: 'Chaat', image: 'https://images.unsplash.com/photo-1513456852971-30c0b8199d4d?w=800&auto=format&fit=crop' },
+    { name: 'Waffles', image: 'https://images.unsplash.com/photo-1562376552-0d160a2f238d?w=800&auto=format&fit=crop' },
   ];
   chains: Restaurant[] = [
-    { name: 'The Rameshwaram Cafe', image: 'https://images.unsplash.com/photo-1630383249896-424e482df921?auto=format&fit=crop&w=600&q=85', rating: '4.7', time: '15-20 mins', cuisine: 'South Indian, Filter Coffee, Snacks', area: 'Indiranagar', offer: 'ITEMS AT ₹149' },
-    { name: 'Meghana Foods', image: 'https://images.unsplash.com/photo-1563379091339-03246963d51a?auto=format&fit=crop&w=600&q=85', rating: '4.6', time: '20-25 mins', cuisine: 'Biryani, Andhra, North Indian', area: 'Koramangala', offer: '20% OFF UPTO ₹120' },
-    { name: 'CTR (Shri Sagar)', image: 'https://images.unsplash.com/photo-1610192244260-44b77d9f0c9e?auto=format&fit=crop&w=600&q=85', rating: '4.8', time: '15-20 mins', cuisine: 'South Indian, Crispy Dosa, Bajji', area: 'Malleshwaram' },
-    { name: 'Truffles', image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=600&q=85', rating: '4.5', time: '25-30 mins', cuisine: 'American, Burgers, Pasta, Desserts', area: "St. Mark's Road / MG Road" },
-    { name: 'Third Wave Coffee', image: 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=600&q=85', rating: '4.6', time: '15-20 mins', cuisine: 'Speciality Coffee, Bakery, Desserts', area: 'Koramangala 4th Block' },
-    { name: 'Corner House Ice Cream', image: 'https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&w=600&q=85', rating: '4.9', time: '10-15 mins', cuisine: 'Ice Cream Sundaes, DBC, Desserts', area: 'Jayanagar', offer: 'BESTSELLER' },
-    { name: 'Hotel Empire', image: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=85', rating: '4.3', time: '30-35 mins', cuisine: 'Kebabs, Biryani, Coin Parota', area: 'Church Street' },
-    { name: 'Brik Oven', image: 'https://images.unsplash.com/photo-1579751626657-72bc17010498?auto=format&fit=crop&w=600&q=85', rating: '4.5', time: '25-30 mins', cuisine: 'Woodfired Sourdough Pizza, Shakes', area: 'Indiranagar 100ft Road' },
-    { name: 'Vidyarthi Bhavan', image: 'https://images.unsplash.com/photo-1630383249896-424e482df921?auto=format&fit=crop&w=600&q=85', rating: '4.7', time: '20-25 mins', cuisine: 'Crispy Masala Dosa, Vada, Coffee', area: 'Gandhi Bazaar, Basavanagudi' },
-    { name: "Glen's Bakehouse", image: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=600&q=85', rating: '4.4', time: '20-25 mins', cuisine: 'Mini Cupcakes, Red Velvet Cake, Lasagna', area: 'Lavelle Road' },
-    { name: 'Toit', image: 'https://images.unsplash.com/photo-1579751626657-72bc17010498?auto=format&fit=crop&w=600&q=85', rating: '4.6', time: '30-35 mins', cuisine: 'Woodfired Pizza, Baked Nachos, Wings', area: 'Indiranagar' },
-    { name: 'Nagarjuna', image: 'https://images.unsplash.com/photo-1563379091339-03246963d51a?auto=format&fit=crop&w=600&q=85', rating: '4.5', time: '25-30 mins', cuisine: 'Andhra Meals, Biryani, Sholay Chicken', area: 'Residency Road' },
+    { name: 'The Rameshwaram Cafe', image: 'https://images.unsplash.com/photo-1668236543090-82eba5ee5976?w=800&auto=format&fit=crop', rating: '4.7', time: '15-20 mins', cuisine: 'South Indian, Filter Coffee, Snacks', area: 'Indiranagar', offer: 'ITEMS AT ₹149', offerType: 'orange', isVeg: true, freeDelivery: true, cost: 250 },
+    { name: 'Meghana Foods', image: 'https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=800&auto=format&fit=crop', rating: '4.6', time: '20-25 mins', cuisine: 'Biryani, Andhra, North Indian', area: 'Koramangala', offer: '20% OFF UPTO ₹120', offerType: 'purple', freeDelivery: true, cost: 500 },
+    { name: 'CTR (Shri Sagar)', image: 'https://images.unsplash.com/photo-1630383249896-424e482df921?w=800&auto=format&fit=crop', rating: '4.8', time: '15-20 mins', cuisine: 'South Indian, Crispy Dosa, Bajji', area: 'Malleshwaram', isVeg: true, cost: 200 },
+    { name: 'Truffles', image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=800&auto=format&fit=crop', rating: '4.5', time: '25-30 mins', cuisine: 'American, Burgers, Pasta, Desserts', area: "St. Mark's Road / MG Road", offer: 'BESTSELLER', offerType: 'gold', cost: 650 },
+    { name: 'Third Wave Coffee', image: 'https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=800&auto=format&fit=crop', rating: '4.6', time: '15-20 mins', cuisine: 'Speciality Coffee, Bakery, Desserts', area: 'Koramangala 4th Block', freeDelivery: true, cost: 450 },
+    { name: 'Corner House Ice Cream', image: 'https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=800&auto=format&fit=crop', rating: '4.9', time: '10-15 mins', cuisine: 'Ice Cream Sundaes, DBC, Desserts', area: 'Jayanagar', offer: 'BESTSELLER', offerType: 'gold', cost: 350 },
+    { name: 'Hotel Empire', image: 'https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?w=800&auto=format&fit=crop', rating: '4.3', time: '30-35 mins', cuisine: 'Kebabs, Biryani, Coin Parota', area: 'Church Street', cost: 550 },
+    { name: 'Brik Oven', image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=800&auto=format&fit=crop', rating: '4.5', time: '25-30 mins', cuisine: 'Woodfired Sourdough Pizza, Shakes', area: 'Indiranagar 100ft Road', offer: '20% OFF', offerType: 'orange', freeDelivery: true, cost: 700 },
+    { name: 'Vidyarthi Bhavan', image: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?w=800&auto=format&fit=crop', rating: '4.7', time: '20-25 mins', cuisine: 'Crispy Masala Dosa, Vada, Coffee', area: 'Gandhi Bazaar, Basavanagudi', isVeg: true, cost: 180 },
+    { name: "Glen's Bakehouse", image: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=800&auto=format&fit=crop', rating: '4.4', time: '20-25 mins', cuisine: 'Mini Cupcakes, Red Velvet Cake, Lasagna', area: 'Lavelle Road', cost: 500 },
+    { name: 'Toit', image: 'https://images.unsplash.com/photo-1513456852971-30c0b8199d4d?w=800&auto=format&fit=crop', rating: '4.6', time: '30-35 mins', cuisine: 'Woodfired Pizza, Baked Nachos, Wings', area: 'Indiranagar', offer: '10% OFF', offerType: 'purple', cost: 850 },
+    { name: 'Nagarjuna', image: 'https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?w=800&auto=format&fit=crop', rating: '4.5', time: '25-30 mins', cuisine: 'Andhra Meals, Biryani, Sholay Chicken', area: 'Residency Road', cost: 600 },
   ];
   restaurants: Restaurant[] = [
     ...this.chains,

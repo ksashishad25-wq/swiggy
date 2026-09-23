@@ -23,6 +23,8 @@
 .signup-button:hover { background: #e96f0b !important; color: #fff !important; }
 .cart-link { position: relative; }
 .cart-badge { align-items: center; background: var(--orange); border: 2px solid #fff; border-radius: 50%; color: #fff; display: inline-flex; font-size: 9px; height: 18px; justify-content: center; position: absolute; right: 2px; top: 1px; width: 18px; }
+@keyframes cartPulse { 0%,100% { transform:scale(1); } 50% { transform:scale(1.18); } }
+.cart-link:hover .cart-badge { animation:cartPulse .6s ease; }
 .cart-link { background: transparent; border: 0; cursor: pointer; }
 .cart-drawer { background: #fff; bottom: 0; box-shadow: -12px 0 35px rgba(2,6,12,.16); display:flex; flex-direction:column; max-width:420px; padding:24px; position:fixed; right:0; top:0; transform:translateX(105%); transition:transform .25s ease; width:100%; z-index:1100; }
 .cart-drawer.open { transform:translateX(0); }

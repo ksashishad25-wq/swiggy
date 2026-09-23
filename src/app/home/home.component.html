@@ -21,9 +21,9 @@
     </div>
     <div class="chain-grid" #chainCarousel>
       <a class="chain-card" *ngFor="let restaurant of chains" [routerLink]="['/restaurants']">
-        <div class="chain-image"><img [src]="restaurant.image" [alt]="restaurant.name" (error)="onImgError($event)" /><span *ngIf="restaurant.offer">{{ restaurant.offer }}</span></div>
+        <div class="chain-image"><img [src]="restaurant.image" [alt]="restaurant.name" (error)="onImgError($event)" /><span *ngIf="restaurant.offer" class="offer-tag" [class.offer-orange]="restaurant.offerType === 'orange'" [class.offer-purple]="restaurant.offerType === 'purple'" [class.offer-gold]="restaurant.offerType === 'gold'">{{ restaurant.offer }}</span></div>
         <h3>{{ restaurant.name }}</h3>
-        <p class="restaurant-rating"><b>★</b> {{ restaurant.rating }} · {{ restaurant.time }}</p>
+        <p class="restaurant-rating"><b [class.rating-high]="restaurant.rating >= '4.5'" [class.rating-standard]="restaurant.rating < '4.5'">★ {{ restaurant.rating }}</b> · {{ restaurant.time }}</p>
         <p>{{ restaurant.cuisine }}</p><p>{{ restaurant.area }}</p>
       </a>
     </div>

@@ -10,6 +10,7 @@ import { CartItem, CartService } from './cart.service';
 export class App {
   locationOpen = false;
   cartOpen = false;
+  selectedLocation = 'Bengaluru, Karnataka';
 
   constructor(private readonly cartService: CartService) {}
 
@@ -19,6 +20,11 @@ export class App {
 
   toggleLocation(): void {
     this.locationOpen = !this.locationOpen;
+  }
+
+  selectLocation(location: string): void {
+    this.selectedLocation = location;
+    this.locationOpen = false;
   }
 
   toggleCart(): void { this.cartOpen = !this.cartOpen; }

@@ -1,29 +1,35 @@
 <div class="swiggy-shell">
   <header class="swiggy-header">
     <div class="container nav-wrap">
-      <a class="brand" [routerLink]="['/home']" aria-label="Swiggy home"><span class="brand-mark">S</span><span class="brand-name">Swiggy</span></a>
+      <a class="brand" [routerLink]="['/home']" aria-label="Swiggy home"><span class="brand-mark"><span>S</span></span><span class="brand-name">Swiggy</span></a>
 
       <div class="location-control">
-        <button class="location-trigger" type="button" (click)="toggleLocation()">
-          <span>Bengaluru, Karnataka</span><span class="chevron">⌄</span>
+        <button class="location-trigger" type="button" (click)="toggleLocation()" [attr.aria-expanded]="locationOpen">
+          <span>{{ selectedLocation }}</span><span class="chevron" aria-hidden="true"></span>
         </button>
         <div class="location-menu" *ngIf="locationOpen">
           <strong>Choose a location</strong>
-          <button type="button" (click)="toggleLocation()">Bengaluru</button>
-          <button type="button" (click)="toggleLocation()">Indiranagar</button>
+          <span class="location-group-label">City</span>
+          <button type="button" (click)="selectLocation('Bengaluru, Karnataka')"><span>Bengaluru</span><span class="option-arrow" aria-hidden="true"></span></button>
+          <span class="location-group-label">Areas in Bengaluru</span>
+          <button type="button" (click)="selectLocation('Indiranagar, Bengaluru')"><span>Indiranagar</span><span class="option-arrow" aria-hidden="true"></span></button>
+          <button type="button" (click)="selectLocation('Koramangala, Bengaluru')"><span>Koramangala</span><span class="option-arrow" aria-hidden="true"></span></button>
+          <button type="button" (click)="selectLocation('Whitefield, Bengaluru')"><span>Whitefield</span><span class="option-arrow" aria-hidden="true"></span></button>
+          <span class="location-group-label">Other cities</span>
+          <button type="button" (click)="selectLocation('Mumbai, Maharashtra')"><span>Mumbai</span><span class="option-arrow" aria-hidden="true"></span></button>
+          <button type="button" (click)="selectLocation('Delhi, NCR')"><span>Delhi</span><span class="option-arrow" aria-hidden="true"></span></button>
         </div>
       </div>
 
       <nav class="nav-links" aria-label="Main navigation">
-        <a [routerLink]="['/restaurants']" routerLinkActive="active-nav">⌕ <span>Restaurants</span></a>
-        <a [routerLink]="['/offers']" routerLinkActive="active-nav" class="offers-link">◉ <span>Offers <sup>NEW</sup></span></a>
-        <a [routerLink]="['/deals']" routerLinkActive="active-nav">◆ <span>Deals</span></a>
-        <a [routerLink]="['/help']" routerLinkActive="active-nav">☻ <span>Help</span></a>
+        <a [routerLink]="['/restaurants']" routerLinkActive="active-nav"><span class="nav-symbol search-symbol" aria-hidden="true"></span><span>Restaurants</span></a>
+        <a [routerLink]="['/offers']" routerLinkActive="active-nav" class="offers-link"><span class="nav-symbol offer-symbol" aria-hidden="true"></span><span>Offers &amp; Deals <sup>NEW</sup></span></a>
+        <a [routerLink]="['/help']" routerLinkActive="active-nav"><span class="nav-symbol help-symbol" aria-hidden="true"></span><span>Help</span></a>
         <span class="auth-actions">
           <a [routerLink]="['/login']" routerLinkActive="active-nav" class="login-link">Log in</a>
           <a [routerLink]="['/signup']" routerLinkActive="active-nav" class="signup-button">Sign up</a>
         </span>
-        <button type="button" class="cart-link" (click)="toggleCart()">▣ <span>Cart</span><b class="cart-badge">{{ cartCount$ | async }}</b></button>
+        <button type="button" class="cart-link" (click)="toggleCart()"><span class="cart-symbol" aria-hidden="true"></span><span>Cart</span><b class="cart-badge">{{ cartCount$ | async }}</b></button>
       </nav>
     </div>
   </header>

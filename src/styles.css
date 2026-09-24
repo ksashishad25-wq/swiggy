@@ -2,7 +2,7 @@
 :root { --swiggy-orange: #fc8019; --swiggy-dark: #02060c; --swiggy-muted: #686b78; --swiggy-green: #25b02e; --swiggy-surface: #f0f0f5; --swiggy-line: #e2e2e7; }
 * { box-sizing: border-box; font-family: 'Basis Grotesque Pro', 'DM Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important; }
 html { scroll-behavior: smooth; }
-body { background: #fff; color: var(--swiggy-dark); margin: 0; }
+body { background: #fff8f2; color: var(--swiggy-dark); margin: 0; }
 button, input, select { font: inherit; }
 a { color: inherit; text-decoration: none; }
 img { max-width: 100%; }

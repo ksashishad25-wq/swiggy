@@ -13,11 +13,11 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'offers', component: OffersComponent },
   { path: 'restaurants', component: RestaurantsComponent },
-  { path: 'deals', component: DealsComponent },
+  { path: 'deals', redirectTo: 'offers', pathMatch: 'full' },
   { path: 'help', component: HelpComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
-  { path: 'cart', redirectTo: 'deals', pathMatch: 'full' },
+  { path: 'cart', redirectTo: 'offers', pathMatch: 'full' },
   { path: '**', redirectTo: 'home' } // Fallback route
 ];
 
